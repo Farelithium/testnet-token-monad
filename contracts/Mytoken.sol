@@ -3,16 +3,15 @@ pragma solidity ^0.8.0;
 
 // Import standar ERC20 dari OpenZeppelin
 import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
-import "@openzeppelin/contracts/access/Ownable.sol";
 
-contract MyToken is ERC20, Ownable {
-    constructor(uint256 initialSupply) ERC20("MyToken", "MTK") Ownable() {
-        // Memberikan supply awal kepada pemilik
+contract MyToken is ERC20 {
+    constructor(uint256 initialSupply) ERC20("MyToken", "MTK") {
+        // Memberikan supply awal kepada pemilik (msg.sender adalah alamat yang melakukan deploy)
         _mint(msg.sender, initialSupply);
     }
-}
+
     // Fungsi mint untuk mencetak lebih banyak token
-    function mint(address to, uint256 amount) public onlyOwner {
+    function mint(address to, uint256 amount) public {
         _mint(to, amount);
     }
 

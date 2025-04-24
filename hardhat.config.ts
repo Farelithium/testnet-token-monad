@@ -10,15 +10,15 @@ const config: HardhatUserConfig = {
     version: "0.8.28",
     settings: {
       metadata: {
-        bytecodeHash: "none", // disable ipfs
-        useLiteralContent: true, // use source code
+        bytecodeHash: "none",
+        useLiteralContent: true,
       },
     },
   },
   networks: {
-    monadTestnet: {
+    monad: {
       url: "https://testnet-rpc.monad.xyz",
-      accounts: [PRIVATE_KEY],
+      accounts: PRIVATE_KEY ? [PRIVATE_KEY] : [],
       chainId: 10143,
     },
   },
@@ -27,7 +27,6 @@ const config: HardhatUserConfig = {
     apiUrl: "https://sourcify-api-monad.blockvision.org",
     browserUrl: "https://testnet.monadexplorer.com",
   },
-  // To avoid errors from Etherscan
   etherscan: {
     enabled: false,
   },

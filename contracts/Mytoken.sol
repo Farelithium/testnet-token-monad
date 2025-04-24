@@ -6,11 +6,11 @@ import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
 
 contract MyToken is ERC20, Ownable {
-    // Inisialisasi token dengan nama dan simbol
-    constructor(uint256 initialSupply) ERC20("MyToken", "MTK") {
+    constructor(uint256 initialSupply) ERC20("MyToken", "MTK") Ownable() {
+        // Memberikan supply awal kepada pemilik
         _mint(msg.sender, initialSupply);
     }
-
+}
     // Fungsi mint untuk mencetak lebih banyak token
     function mint(address to, uint256 amount) public onlyOwner {
         _mint(to, amount);
